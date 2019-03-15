@@ -48,11 +48,12 @@ bool Donnees::AjouterTache(Tache inTache)
 {
 	bool ajoutReussi = false;
 	for (int cpt = 0; cpt < maxTaches; cpt++) {
-		if (lesTaches[cpt]->getTitre() == "") {
+		if (lesTaches[cpt] == NULL) {
 			lesTaches[cpt] = new Tache(inTache);
-			return ajoutReussi;
+			ajoutReussi = true;
 		}
 	}
+return ajoutReussi;
 }
 Employe Donnees::ChercherEmployeSelonNumero(string inNumero)
 {
