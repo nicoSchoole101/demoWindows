@@ -403,7 +403,12 @@ namespace employes {
 	}
 
 	private: System::Void btnRechercherTache_Click(System::Object^  sender, System::EventArgs^  e) {
+		Tache laTache =  lesDonneesDuProgramme.ChercherTacheParIdentifiant(msclr::interop::marshal_as<std::string>(txtIdentifiant->Text));
+		txtTitre->Text = gcnew String(laTache.getTitre().c_str());
+		txtEtat->Text = gcnew String(laTache.getEtatAvancement().c_str());
+		txtMesure->Text = gcnew String(laTache.getUniteMesure().c_str());
+		txtDuree->Text = laTache.getDuree().ToString();
 	}
-
+			
 };
 }

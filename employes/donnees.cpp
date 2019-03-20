@@ -46,12 +46,14 @@ bool Donnees::AjouterEmploye(Employe inEmploye)
 }
 bool Donnees::AjouterTache(Tache inTache) 
 {
+	int cpt = 0;
 	bool ajoutReussi = false;
-	for (int cpt = 0; cpt < maxTaches; cpt++) {
+	while (cpt < maxTaches && ajoutReussi == false) {
 		if (lesTaches[cpt] == NULL) {
 			lesTaches[cpt] = new Tache(inTache);
 			ajoutReussi = true;
 		}
+		cpt++;
 	}
 return ajoutReussi;
 }
@@ -63,7 +65,19 @@ Employe Donnees::ChercherEmployeSelonNumero(string inNumero)
 }
 Tache Donnees::ChercherTacheParIdentifiant(string inId)
 {
+	int cpt = 0;
+	bool trouvee = false;
 	Tache tacheTrouve;
-
+	while (cpt < maxTaches && trouvee == false) {
+		
+		if (lesTaches[cpt]!=NULL && lesTaches[cpt]->getIdentifiant() == inId) {
+			tacheTrouve.setEtat(lesTaches[cpt]->getEtatAvancement());
+			tacheTrouve.setTitre(lesTaches[cpt]->getTitre());
+			tacheTrouve.setIdentifiant(inId);
+			tacheTrouve.initialiserDuree(lesTaches[cpt]->getDuree(), lesTaches[cpt]->getUniteMesure());
+			trouvee = true;
+		}
+		cpt++;
+	}
 	return tacheTrouve;
 }
